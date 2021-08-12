@@ -1,0 +1,33 @@
+ for (int i = 0; i < input.length(); i++) {
+        char symbol = input.charAt(i);
+
+        if (symbol == 32 || symbol == 45 || symbol == 1025
+                || symbol >= 1040 && symbol <= 1103 || symbol == 1105) {
+          String template = "Фамилия: %s%nИмя: %s%nОтчество: %s";
+          System.out.printf(template, getLastName(input), getName(input), getPatronymic(input));
+          break;
+        }
+          System.out.println("Введенная строка не является ФИО");
+          break;
+      }
+    }
+  }
+
+  public static String getLastName(String name) {
+    String charsetStr = " ";
+    int start = name.indexOf(charsetStr);
+    return name.substring(0, start);
+  }
+
+  public static String getName(String name) {
+    String charsetStr = " ";
+    int start = name.indexOf(charsetStr) + charsetStr.length();
+    int end = name.indexOf(" ", start);
+    return name.substring(start, end);
+  }
+
+  public static String getPatronymic(String name) {
+    String charsetStr = " ";
+    int start = name.lastIndexOf(charsetStr) + charsetStr.length();
+    return name.substring(start);
+  }
